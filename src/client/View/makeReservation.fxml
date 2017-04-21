@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity"
+            minHeight="-Infinity"
+            minWidth="-Infinity" prefHeight="600.0" prefWidth="1010.0"
+            xmlns="http://javafx.com/javafx/8.0.91" fx:controller="client.Controller.ReservationController">
+    <BorderPane onMouseClicked="#changeView" prefHeight="600.0" prefWidth="1010.0">
+        <bottom>
+            <Label alignment="CENTER_RIGHT" prefWidth="1000.0" text="Copyright © 2016 Group1. All rights reserved.">
+                <BorderPane.margin>
+                    <Insets right="10.0" fx:id="x1"/>
+                </BorderPane.margin>
+            </Label>
+        </bottom>
+        <center>
+            <BorderPane prefHeight="360.0" prefWidth="600.0">
+                <bottom>
+                    <ListView fx:id="tripListReservation" prefHeight="200.0" prefWidth="200.0"
+                              BorderPane.alignment="CENTER"/>
+                </bottom>
+                <center>
+                    <HBox prefHeight="465.0" prefWidth="1000.0">
+                        <VBox alignment="CENTER" prefHeight="255.0" prefWidth="495.0">
+                            <HBox.margin>
+                                <Insets bottom="10.0" fx:id="x3"/>
+                            </HBox.margin>
+                            <Label alignment="CENTER" prefWidth="688.0" text="Search tour">
+                                <font>
+                                    <Font size="18.0"/>
+                                </font>
+                            </Label>
+                            <GridPane prefHeight="210.0" prefWidth="542.0">
+                                <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="347.0" minWidth="10.0"
+                                                       prefWidth="134.0"/>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="568.0" minWidth="10.0"
+                                                       prefWidth="361.0"/>
+                                </columnConstraints>
+                                <rowConstraints>
+                                    <RowConstraints maxHeight="114.0" minHeight="10.0" prefHeight="55.0"
+                                                    vgrow="SOMETIMES"/>
+                                    <RowConstraints maxHeight="66.0" minHeight="10.0" prefHeight="55.0"
+                                                    vgrow="SOMETIMES"/>
+                                    <RowConstraints maxHeight="66.0" minHeight="10.0" prefHeight="49.0"
+                                                    vgrow="SOMETIMES"/>
+                                    <RowConstraints maxHeight="66.0" minHeight="10.0" prefHeight="51.0"
+                                                    vgrow="SOMETIMES"/>
+                                </rowConstraints>
+                                <Label text="Destination:" GridPane.columnIndex="0" GridPane.halignment="RIGHT"
+                                       GridPane.rowIndex="0"/>
+                                <Label text="Departure: " GridPane.columnIndex="0" GridPane.halignment="RIGHT"
+                                       GridPane.rowIndex="1"/>
+                                <Label text="Nr of passengers:" GridPane.halignment="RIGHT" GridPane.rowIndex="2"/>
+                                <TextField fx:id="fieldDestination" maxHeight="-Infinity" maxWidth="-Infinity"
+                                           minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#searchTrip"
+                                           prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                    <GridPane.margin>
+                                        <Insets left="50.0" fx:id="x2"/>
+                                    </GridPane.margin>
+                                </TextField>
+                                <TextField id="fieldDep" fx:id="fieldDeparture" maxHeight="-Infinity"
+                                           maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                                           onKeyReleased="#searchTrip" prefWidth="300.0" GridPane.columnIndex="1"
+                                           GridPane.margin="$x2" GridPane.rowIndex="1"/>
+                                <TextField fx:id="fieldNrPassengers" maxHeight="-Infinity" maxWidth="-Infinity"
+                                           minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#searchTrip"
+                                           prefWidth="300.0" GridPane.columnIndex="1" GridPane.margin="$x2"
+                                           GridPane.rowIndex="2"/>
+                            </GridPane>
+                            <Button fx:id="mkReservationView" mnemonicParsing="false" onAction="#controlData"
+                                    prefWidth="271.0" text="Choose Tour"/>
+                        </VBox>
+                        <TextArea fx:id="noteReservation" prefHeight="255.0" prefWidth="495.0" promptText="Notes"
+                                  wrapText="true" HBox.margin="$x3"/>
+                    </HBox>
+                </center>
+                <padding>
+                    <Insets left="10.0" right="10.0"/>
+                </padding>
+                <top>
+                    <VBox minHeight="55.0" prefHeight="95.0" prefWidth="600.0">
+                        <padding>
+                            <Insets bottom="20.0"/>
+                        </padding>
+                        <Label alignment="CENTER" prefHeight="50.0" prefWidth="1010.0" text="VIA Bus"
+                               textAlignment="CENTER">
+                            <font>
+                                <Font size="20.0"/>
+                            </font>
+                            <VBox.margin>
+                                <Insets/>
+                            </VBox.margin>
+                        </Label>
+                        <Label alignment="CENTER" prefWidth="1010.0" text="Make reservation">
+                            <VBox.margin>
+                                <Insets bottom="10.0" fx:id="x2"/>
+                            </VBox.margin>
+                        </Label>
+                    </VBox>
+                </top>
+            </BorderPane>
+        </center>
+        <top>
+            <MenuBar fx:id="menu">
+                <Menu mnemonicParsing="false" text="Home">
+                    <MenuItem fx:id="homeHome" mnemonicParsing="false" onAction="#changeViewMenu" text="Home"/>
+                    <MenuItem fx:id="homeTour" mnemonicParsing="false" onAction="#changeViewMenu" text="Create tour"/>
+                    <MenuItem fx:id="homeReserve" mnemonicParsing="false" onAction="#changeViewMenu"
+                              text="Make reservation"/>
+                    <MenuItem fx:id="homeSearch" mnemonicParsing="false" onAction="#changeViewMenu" text="Search"/>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Bus List">
+                    <MenuItem fx:id="homeBus" mnemonicParsing="false" onAction="#changeViewMenu" text="Bus List"/>
+                    <MenuItem fx:id="homeBusAdd" mnemonicParsing="false" onAction="#changeViewMenu" text="Add bus"/>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Chauffeur list">
+                    <MenuItem fx:id="homeDriver" mnemonicParsing="false" onAction="#changeViewMenu"
+                              text="Chauffeur list"/>
+                    <MenuItem fx:id="homeDriverAdd" mnemonicParsing="false" onAction="#changeViewMenu"
+                              text="Add chauffeur"/>
+                </Menu>
+            </MenuBar>
+        </top>
+    </BorderPane>
+</AnchorPane>

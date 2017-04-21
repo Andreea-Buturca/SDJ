@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity"
+            minHeight="-Infinity"
+            minWidth="-Infinity" prefHeight="600.0" prefWidth="1010.0"
+            xmlns="http://javafx.com/javafx/2.2" fx:controller="client.Controller.BusController">
+    <BorderPane onMouseClicked="#changeView" prefHeight="600.0" prefWidth="1010.0">
+        <bottom>
+            <Label alignment="CENTER_RIGHT" prefWidth="1000.0" text="Copyright © 2016 Group1. All rights reserved.">
+                <BorderPane.margin>
+                    <Insets right="10.0" fx:id="x1"/>
+                </BorderPane.margin>
+            </Label>
+        </bottom>
+        <center>
+            <BorderPane prefHeight="360.0" prefWidth="600.0">
+                <padding>
+                    <Insets left="10.0" right="10.0"/>
+                </padding>
+                <top>
+                    <VBox minHeight="55.0" prefHeight="560.0" prefWidth="990.0">
+                        <padding>
+                            <Insets bottom="20.0"/>
+                        </padding>
+                        <Label alignment="CENTER" prefHeight="50.0" prefWidth="1010.0" text="VIA Bus"
+                               textAlignment="CENTER">
+                            <font>
+                                <Font size="20.0"/>
+                            </font>
+                            <VBox.margin>
+                                <Insets/>
+                            </VBox.margin>
+                        </Label>
+                        <Label alignment="CENTER" prefWidth="990.0" text="Bus List">
+                            <VBox.margin>
+                                <Insets bottom="10.0" fx:id="x2"/>
+                            </VBox.margin>
+                        </Label>
+                        <ListView fx:id="busListview" prefHeight="402.0" prefWidth="990.0"/>
+                        <BorderPane prefHeight="77.0" prefWidth="990.0">
+                            <left>
+                                <Button id="addBus" fx:id="addBusView" mnemonicParsing="false"
+                                        onMouseClicked="#changeView"
+                                        text="Add Bus"/>
+                            </left>
+                            <padding>
+                                <Insets left="350.0" right="350.0" top="30.0"/>
+                            </padding>
+                            <right>
+                                <Button fx:id="deleteBus" mnemonicParsing="false" onAction="#deleteBus"
+                                        text="Delete Bus"/>
+                            </right>
+                        </BorderPane>
+                    </VBox>
+                </top>
+            </BorderPane>
+        </center>
+        <top>
+            <MenuBar fx:id="menu">
+                <Menu mnemonicParsing="false" text="Home">
+                    <MenuItem mnemonicParsing="false" onAction="#changeViewMenu" text="Home" fx:id="homeHome"/>
+                    <MenuItem mnemonicParsing="false" onAction="#changeViewMenu" text="Create tour" fx:id="homeTour"/>
+                    <MenuItem mnemonicParsing="false" onAction="#changeViewMenu" text="Make reservation"
+                              fx:id="homeReserve"/>
+                    <MenuItem mnemonicParsing="false" onAction="#changeViewMenu" text="Search" fx:id="homeSearch"/>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Bus List">
+                    <MenuItem mnemonicParsing="false" onAction="#changeViewMenu" text="Bus List" fx:id="homeBus"/>
+                    <MenuItem mnemonicParsing="false" onAction="#changeViewMenu" text="Add bus" fx:id="homeBusAdd"/>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Chauffeur list">
+                    <MenuItem mnemonicParsing="false" onAction="#changeViewMenu" text="Chauffeur list"
+                              fx:id="homeDriver"/>
+                    <MenuItem mnemonicParsing="false" onAction="#changeViewMenu" text="Add chauffeur"
+                              fx:id="homeDriverAdd"/>
+                </Menu>
+            </MenuBar>
+        </top>
+    </BorderPane>
+</AnchorPane>
