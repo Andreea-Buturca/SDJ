@@ -1,5 +1,6 @@
 package client;
 
+import client.controller.ConnectionController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -7,23 +8,19 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
-import client.Model.DataHandler;
 
+import java.io.IOException;
 import java.util.Optional;
 
 public class Main extends Application {
 
     public static Stage stage;
-
-    public static void main(String[] args) {
-        DataHandler.load();
-        launch(args);
-    }
+    public static ConnectionController connectionController;
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("./View/mainScreen.fxml"));
-        primaryStage.setTitle("VIA BUS");
+    public void start(Stage primaryStage) throws Exception{
+        Parent root = FXMLLoader.load(getClass().getResource("view/dateRange.fxml"));
+        primaryStage.setTitle("VIA BUS TRIPS");
         Scene scene = new Scene(root, 1000, 600);
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
@@ -32,17 +29,30 @@ public class Main extends Application {
         stage.setOnCloseRequest(we -> {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Confirm Exit");
-            alert.setHeaderText("You are trying to close VIA Bus");
-            alert.setContentText("Are you ok with this? (Back up will be created)");
+            alert.setHeaderText("You are trying to close VIA Bus trips");
+            alert.setContentText("Are you sure?");
 
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK) {
-                DataHandler.save();
-                DataHandler.backUp();
                 stage.close();
+                System.exit(0);
             } else {
                 we.consume();
             }
         });
+    }
+
+
+    public static void main(String[] args) {
+        try
+        {
+            connectionController = new ConnectionController();
+            new Thread(connectionController, "Reciever").start();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        launch(args);
     }
 }
