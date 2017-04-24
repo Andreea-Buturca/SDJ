@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
+import server.controller.ObservableHandler;
 import server.controller.ServerController;
 import server.model.DataHandler;
 
@@ -15,9 +16,11 @@ import java.util.Optional;
 public class Main extends Application {
 
     public static Stage stage;
+    public static ObservableHandler oHandler;
 
     public static void main(String[] args) {
         DataHandler.load();
+        oHandler = new ObservableHandler();
         ServerController serverController = new ServerController();
         new Thread(serverController, "Server").start();
         launch(args);

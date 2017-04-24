@@ -19,7 +19,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("view/dateRange.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("view/tripList.fxml"));
         primaryStage.setTitle("VIA BUS TRIPS");
         Scene scene = new Scene(root, 1000, 600);
         primaryStage.setScene(scene);
