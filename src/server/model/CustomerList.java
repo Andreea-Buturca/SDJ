@@ -2,6 +2,7 @@ package server.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Class which represents a list of customers.
@@ -9,7 +10,7 @@ import java.util.ArrayList;
  * @author IT-1Y-A16 Group 1
  */
 
-public class CustomerList implements Serializable {
+public class CustomerList implements Iterable<Customer>, Serializable {
 
     private ArrayList<Customer> customers = new ArrayList<>();
 
@@ -170,5 +171,36 @@ public class CustomerList implements Serializable {
                 s += "\n";
         }
         return s;
+    }
+
+    @Override
+    public Iterator<Customer> iterator() {
+        return new ArrayListIterator();
+    }
+
+    private class ArrayListIterator implements Iterator<Customer>
+    {
+        private int currentIndex;
+
+        public ArrayListIterator()
+        {
+            this.currentIndex = 0;
+        }
+
+        @Override
+        public boolean hasNext()
+        {
+            return currentIndex < getSize();
+        }
+
+        @Override
+        public Customer next()
+        {
+            if (!hasNext())
+                throw new IllegalStateException("Element not found");
+            Customer customer = customers.get(currentIndex);
+            currentIndex++;
+            return customer;
+        }
     }
 }
