@@ -28,7 +28,7 @@ public class Controller implements Observer {
     public ListView tripList;
 
     public Controller() {
-        server.Main.oHandler.adObserver(this);
+        //server.Main.oHandler.adObserver(this);
     }
 
     public void searchMain(ActionEvent actionEvent) throws IOException {
@@ -47,14 +47,16 @@ public class Controller implements Observer {
         System.out.println("searching");
     }
 
-    private void showList(TripList trips) {
-        trips.sort();
-        ObservableList<Trip> data = FXCollections.observableArrayList();
-        for (int i = 0; i < trips.getSize(); i++) {
-            if (trips.getArrayTrip().get(i).getDateStart().isEqual(LocalDate.now())) data.add(trips.get(i));
-            if (trips.getArrayTrip().get(i).getDateStart().isAfter(LocalDate.now())) data.add(trips.get(i));
+    public void showList(TripList trips) {
+        if (tripList!=null) {
+            trips.sort();
+            ObservableList<Trip> data = FXCollections.observableArrayList();
+            for (int i = 0; i < trips.getSize(); i++) {
+                if (trips.getArrayTrip().get(i).getDateStart().isEqual(LocalDate.now())) data.add(trips.get(i));
+                if (trips.getArrayTrip().get(i).getDateStart().isAfter(LocalDate.now())) data.add(trips.get(i));
+            }
+            tripList.setItems(data);
         }
-        tripList.setItems(data);
     }
 
     @Override
