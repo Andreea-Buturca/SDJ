@@ -63,7 +63,7 @@ public class Controller implements Initializable {
      */
 
     private void showList() {
-        TripList trips = DataHandler.getTrips();
+        TripList trips = DataHandler.getDataHandler().getTrips();
         trips.sort();
         ObservableList<Trip> data = FXCollections.observableArrayList();
         for (int i = 0; i < trips.getSize(); i++) {

@@ -84,7 +84,7 @@ public class ReservationController extends Controller implements Initializable {
 
     private void loadTrips() {
         TripList trips;
-        trips = DataHandler.getTrips();
+        trips = DataHandler.getDataHandler().getTrips();
         tripListReservation.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         ObservableList<Trip> items = FXCollections.observableArrayList();
         if (trips.getSize() != 0) {
@@ -98,7 +98,7 @@ public class ReservationController extends Controller implements Initializable {
 
     private void findTrip() {
         if (tripListReservation != null) {
-            TripList matching = DataHandler.getTrips();
+            TripList matching = DataHandler.getDataHandler().getTrips();
             matching = matching.findAllStandard();
             if (fieldDestination.getText() != null && (!fieldDestination.getText().equals("")))
                 matching = matching.findAllByDestination(fieldDestination.getText());
@@ -223,7 +223,7 @@ public class ReservationController extends Controller implements Initializable {
     private void loadCustomerList() {
         listViewCustomer.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         ObservableList<Customer> items = FXCollections.observableArrayList();
-        items.addAll(DataHandler.getCustomerList().getArrayCustomer());
+        items.addAll(DataHandler.getDataHandler().getCustomerList().getArrayCustomer());
         listViewCustomer.setItems(items);
     }
 
@@ -254,10 +254,10 @@ public class ReservationController extends Controller implements Initializable {
             isCompany = validateEmptyField(fieldNameCompany);
 
             if (!isCompany) {
-                DataHandler.getCustomerList().add(new Customer(name, address, email, phone));
+                DataHandler.getDataHandler().getCustomerList().add(new Customer(name, address, email, phone));
             } else if (isCompany) {
                 String companyName = fieldNameCompany.getText();
-                DataHandler.getCustomerList().add(new Customer(name, address, email, phone, isCompany, companyName));
+                DataHandler.getDataHandler().getCustomerList().add(new Customer(name, address, email, phone, isCompany, companyName));
             }
 
             successdisplay("Success", "Customer was created.");
@@ -346,13 +346,13 @@ public class ReservationController extends Controller implements Initializable {
         if (length == alert.length()) {
             //save it DataHandler. .....
             Customer customer = (Customer) listViewCustomer.getSelectionModel().getSelectedItem();
-            DataHandler.getCustomerList().getCustomer(DataHandler.getCustomerList().getIndex((Customer) listViewCustomer.getSelectionModel().getSelectedItem())).addPointToCustomer();
+            DataHandler.getDataHandler().getCustomerList().getCustomer(DataHandler.getDataHandler().getCustomerList().getIndex((Customer) listViewCustomer.getSelectionModel().getSelectedItem())).addPointToCustomer();
             String[] priceLine = labelTotalPrice.getText().split(" ");
             double price = Double.parseDouble(priceLine[0]);
 
             if (editing != null) {
                 trip = editing.getTrip();
-                DataHandler.getReservationList().remove(editing);
+                DataHandler.getDataHandler().getReservationList().remove(editing);
             }
 
             Reservation reservation = new Reservation(trip, customer, passengerList, price);
@@ -367,7 +367,7 @@ public class ReservationController extends Controller implements Initializable {
                 reservation.setPriceExtraServicesYoung(Double.parseDouble(fieldExtraServicesYoung.getText()));
             }
             reservation.setFinalPrice();
-            DataHandler.getReservationList().add(reservation);
+            DataHandler.getDataHandler().getReservationList().add(reservation);
             if (noteWindow != null) {
                 closeNote();
             }
@@ -379,7 +379,7 @@ public class ReservationController extends Controller implements Initializable {
             } else {
                 successdisplay("Created", "Reservation created.");
             }
-            DataHandler.save();
+            DataHandler.getDataHandler().save();
             Parent root = FXMLLoader.load(getClass().getResource("../view/mainScreen.fxml"));
             Scene scene = new Scene(root);
             Main.stage.setScene(scene);

@@ -12,18 +12,30 @@ import java.io.*;
 
 public class DataHandler implements Serializable {
 
-    private static TripList trips;
-    private static BusList busList;
-    private static ChauffeurList chauffeurList;
-    private static CustomerList customerList;
-    private static ReservationList reservationList;
-    private static DestinationList destinationList;
+    private TripList trips;
+    private BusList busList;
+    private ChauffeurList chauffeurList;
+    private CustomerList customerList;
+    private ReservationList reservationList;
+    private DestinationList destinationList;
+    private static DataHandler dataHandler;
 
+    private DataHandler() {
+
+    }
+public static DataHandler getDataHandler()
+{
+    if(dataHandler==null)
+    {
+        dataHandler=new DataHandler();
+    }
+    return dataHandler;
+}
     /**
      * @return main TripList
      */
 
-    public static TripList getTrips() {
+    public TripList getTrips() {
         return trips;
     }
 
@@ -31,7 +43,7 @@ public class DataHandler implements Serializable {
      * @return main BusList
      */
 
-    public static BusList getBusList() {
+    public BusList getBusList() {
         return busList;
     }
 
@@ -39,7 +51,7 @@ public class DataHandler implements Serializable {
      * @return main ChauffeurList
      */
 
-    public static ChauffeurList getChauffeurList() {
+    public ChauffeurList getChauffeurList() {
         return chauffeurList;
     }
 
@@ -47,7 +59,7 @@ public class DataHandler implements Serializable {
      * @return main CustomerList
      */
 
-    public static CustomerList getCustomerList() {
+    public CustomerList getCustomerList() {
         return customerList;
     }
 
@@ -55,7 +67,7 @@ public class DataHandler implements Serializable {
      * @return main ReservationList
      */
 
-    public static ReservationList getReservationList() {
+    public ReservationList getReservationList() {
         return reservationList;
     }
 
@@ -63,11 +75,11 @@ public class DataHandler implements Serializable {
      * @return main DestinationList
      */
 
-    public static DestinationList getDestinationList() {
+    public DestinationList getDestinationList() {
         return destinationList;
     }
 
-    public static void testCreate() {
+    public void testCreate() {
         trips = new TripList();
         busList = new BusList();
         chauffeurList = new ChauffeurList();
@@ -80,7 +92,7 @@ public class DataHandler implements Serializable {
      * Creates file to save data in.
      */
 
-    public static void save() {
+    public  void save() {
 
         String filename = "mainData.bin";
         saveFile(filename);
@@ -91,7 +103,7 @@ public class DataHandler implements Serializable {
      * Creates back-up file.
      */
 
-    public static void backUp() {
+    public  void backUp() {
 
         String filename = "mainDataBackUp.bin";
         saveFile(filename);
@@ -102,7 +114,7 @@ public class DataHandler implements Serializable {
      * Loads all data from main file.
      */
 
-    public static void load() {
+    public void load() {
         String filename = "mainData.bin";
         ObjectInputStream in = null;
         try {
@@ -134,7 +146,7 @@ public class DataHandler implements Serializable {
      * @param filename name of file to save into
      */
 
-    private static void saveFile(String filename) {
+    private void saveFile(String filename) {
         ObjectOutputStream out = null;
         try {
             File file = new File(filename);

@@ -19,7 +19,7 @@ public class Main extends Application {
     public static ObservableHandler oHandler;
 
     public static void main(String[] args) {
-        DataHandler.load();
+        DataHandler.getDataHandler().load();
         oHandler = new ObservableHandler();
         ServerController serverController = new ServerController();
         new Thread(serverController, "Server").start();
@@ -44,8 +44,8 @@ public class Main extends Application {
 
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK) {
-                DataHandler.save();
-                DataHandler.backUp();
+                DataHandler.getDataHandler().save();
+                DataHandler.getDataHandler().backUp();
                 stage.close();
                 System.exit(0);
             } else {

@@ -204,7 +204,7 @@ public class ChauffeurList implements Serializable {
     public ChauffeurList getAvailable(Date from, Date to) {
         ArrayList<Chauffeur> inTrips = new ArrayList<>();
         ChauffeurList result = new ChauffeurList();
-        TripList trips = DataHandler.getTrips();
+        TripList trips = DataHandler.getDataHandler().getTrips();
         for (int i = 0; i < trips.getArrayTrip().size(); i++) {
             for (Chauffeur chauffeur : chauffeurs) {
                 if (chauffeur.equals(trips.getArrayTrip().get(i).getChauffeur())) {

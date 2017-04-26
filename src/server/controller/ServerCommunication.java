@@ -23,7 +23,7 @@ public class ServerCommunication implements Runnable {
 
     public void run() {
         try {
-            outToClient.writeObject(DataHandler.getTrips());
+            outToClient.writeObject(DataHandler.getDataHandler().getTrips());
         } catch (IOException e) {
             e.printStackTrace();
         }

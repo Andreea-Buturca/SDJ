@@ -46,7 +46,7 @@ public class BusController extends Controller {
     private void loadList() {
         busListview.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         ObservableList<Bus> items = FXCollections.observableArrayList();
-        for (Bus bus : DataHandler.getBusList().getArrayBuses()) {
+        for (Bus bus : DataHandler.getDataHandler().getBusList().getArrayBuses()) {
             items.add(bus);
         }
         busListview.setItems(items);
@@ -60,11 +60,11 @@ public class BusController extends Controller {
         ObservableList<Bus> selected;
         selected = busListview.getSelectionModel().getSelectedItems();
         for (Bus aSelected : selected) {
-            DataHandler.getBusList().removeBus(aSelected);
+            DataHandler.getDataHandler().getBusList().removeBus(aSelected);
         }
 
         loadList();
-        DataHandler.save();
+        DataHandler.getDataHandler().save();
     }
 
     /**
@@ -84,15 +84,15 @@ public class BusController extends Controller {
             int seats = Integer.parseInt(seatNumber.getText());
 
             if (typeChoice.getValue().equals("Classic Bus")) {
-                DataHandler.getBusList().add(new ClassicBus(regplate, seats));
+                DataHandler.getDataHandler().getBusList().add(new ClassicBus(regplate, seats));
             } else if (typeChoice.getValue().equals("Mini Bus")) {
-                DataHandler.getBusList().add(new MiniBus(regplate, seats));
+                DataHandler.getDataHandler().getBusList().add(new MiniBus(regplate, seats));
             } else if (typeChoice.getValue().equals("Luxury Bus")) {
-                DataHandler.getBusList().add(new LuxuryBus(regplate, seats));
+                DataHandler.getDataHandler().getBusList().add(new LuxuryBus(regplate, seats));
             } else {
-                DataHandler.getBusList().add(new PartyBus(regplate, seats));
+                DataHandler.getDataHandler().getBusList().add(new PartyBus(regplate, seats));
             }
-            DataHandler.save();
+            DataHandler.getDataHandler().save();
             successdisplay("Success", "Bus was created.");
             Parent root = FXMLLoader.load(getClass().getResource("../view/busList.fxml"));
             Scene scene = new Scene(root);
