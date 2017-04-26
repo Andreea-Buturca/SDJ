@@ -1,6 +1,8 @@
 package client.controller;
 
 
+import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.Pane;
 import server.model.TripList;
 
 import java.io.IOException;
@@ -25,6 +27,10 @@ public class ClientReceiver implements Runnable{
         while (true) {
             try {
                 TripList trips = (TripList) inFromServer.readObject();
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                Pane p = fxmlLoader.load(getClass().getResource("../view/tripList.fxml").openStream());
+                Controller controller = (Controller) fxmlLoader.getController();
+                controller.showList(trips);
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (ClassNotFoundException e) {
