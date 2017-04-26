@@ -53,7 +53,7 @@ public class ChauffeurController extends Controller implements Initializable {
     private void loadList() {
         listViewChauffeurList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         ObservableList<Chauffeur> items = FXCollections.observableArrayList();
-        for (Chauffeur chauffeur : DataHandler.getDataHandler().getChauffeurList().getArrayChauffeur()) {
+        for (Chauffeur chauffeur : DataHandler.getInstance().getChauffeurList().getArrayChauffeur()) {
             items.add(chauffeur);
         }
         listViewChauffeurList.setItems(items);
@@ -94,8 +94,8 @@ public class ChauffeurController extends Controller implements Initializable {
             boolean isVikar = false;
 
             if (!checkBoxVikar.isSelected()) {
-                DataHandler.getDataHandler().getChauffeurList().add(new Chauffeur(name, address, email, phone, birthday, chauffeurID, isVikar));
-                Chauffeur chauffeur = DataHandler.getDataHandler().getChauffeurList().getByName(name);
+                DataHandler.getInstance().getChauffeurList().add(new Chauffeur(name, address, email, phone, birthday, chauffeurID, isVikar));
+                Chauffeur chauffeur = DataHandler.getInstance().getChauffeurList().getByName(name);
                 if (checkBoxDistanceShort.isSelected()) {
                     chauffeur.setPreferredShortDistance(400);
                 }
@@ -119,10 +119,10 @@ public class ChauffeurController extends Controller implements Initializable {
                 }
             } else if (checkBoxVikar.isSelected()) {
                 isVikar = true;
-                DataHandler.getDataHandler().getChauffeurList().add(new Chauffeur(name, address, email, phone, birthday, chauffeurID, isVikar));
+                DataHandler.getInstance().getChauffeurList().add(new Chauffeur(name, address, email, phone, birthday, chauffeurID, isVikar));
             }
 
-            DataHandler.getDataHandler().save();
+            DataHandler.getInstance().save();
             successdisplay("Success", "Chauffeur was added.");
 
             Parent root = FXMLLoader.load(getClass().getResource("../view/chauffeurList.fxml"));
@@ -143,10 +143,10 @@ public class ChauffeurController extends Controller implements Initializable {
         ObservableList<Chauffeur> selected;
         selected = listViewChauffeurList.getSelectionModel().getSelectedItems();
         for (Chauffeur aSelected : selected) {
-            DataHandler.getDataHandler().getChauffeurList().removeChauffeur(aSelected);
+            DataHandler.getInstance().getChauffeurList().removeChauffeur(aSelected);
         }
         loadList();
-        DataHandler.getDataHandler().save();
+        DataHandler.getInstance().save();
         successdisplay("Success", "Chauffeur was deleted.");
     }
 }

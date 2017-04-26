@@ -7,7 +7,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
-import server.controller.ObservableHandler;
 import server.controller.ServerController;
 import server.mediator.DataHandler;
 
@@ -19,7 +18,7 @@ public class Main extends Application {
     public static ObservableHandler oHandler;
 
     public static void main(String[] args) {
-        DataHandler.getDataHandler().load();
+        DataHandler.getInstance().load();
         oHandler = new ObservableHandler();
         ServerController serverController = new ServerController();
         new Thread(serverController, "Server").start();
@@ -44,8 +43,8 @@ public class Main extends Application {
 
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK) {
-                DataHandler.getDataHandler().save();
-                DataHandler.getDataHandler().backUp();
+                DataHandler.getInstance().save();
+                DataHandler.getInstance().backUp();
                 stage.close();
                 System.exit(0);
             } else {

@@ -112,7 +112,7 @@ public class BusList implements Serializable {
     public BusList getAvailable(Date from, Date to) {
         ArrayList<Bus> inTrips = new ArrayList<>();
         BusList result = new BusList();
-        TripList trips = DataHandler.getDataHandler().getTrips();
+        TripList trips = DataHandler.getInstance().getTrips();
         for (int i = 0; i < trips.getArrayTrip().size(); i++) {
             for (Bus buse : buses) {
                 if (buse.equals(trips.getArrayTrip().get(i).getBus())) {

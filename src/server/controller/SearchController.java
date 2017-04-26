@@ -62,7 +62,7 @@ public class SearchController extends Controller implements Initializable {
                     if (email != null) {
                         if (phone != null) {
                             if (matchingReservations != null) {
-                                CustomerList matching = DataHandler.getDataHandler().getCustomerList();
+                                CustomerList matching = DataHandler.getInstance().getCustomerList();
                                 if (name.getText() != null && (!name.getText().equals("")))
                                     matching = matching.findAllByName(name.getText());
                                 if (address.getText() != null && (!address.getText().equals("")))
@@ -71,7 +71,7 @@ public class SearchController extends Controller implements Initializable {
                                     matching = matching.findAllByEmail(email.getText());
                                 if (phone.getText() != null && (!phone.getText().equals("")))
                                     matching = matching.findAllByPhone(phone.getText());
-                                ReservationList reservations = DataHandler.getDataHandler().getReservationList();
+                                ReservationList reservations = DataHandler.getInstance().getReservationList();
                                 ObservableList<Reservation> items = FXCollections.observableArrayList();
                                 for (int i = 0; i < matching.getSize(); i++) {
                                     for (int j = 0; j < reservations.getSize(); j++) {
@@ -100,7 +100,7 @@ public class SearchController extends Controller implements Initializable {
 
     private void findTrips() {
         if (matchingTrips != null) {
-            TripList matching = DataHandler.getDataHandler().getTrips();
+            TripList matching = DataHandler.getInstance().getTrips();
             if (destination.getText() != null && (!destination.getText().equals("")))
                 matching = matching.findAllByDestination(destination.getText());
             if (departure.getText() != null && (!departure.getText().equals("")))
@@ -122,7 +122,7 @@ public class SearchController extends Controller implements Initializable {
         ObservableList<Trip> selected;
         selected = matchingTrips.getSelectionModel().getSelectedItems();
         for (Trip aSelected : selected) {
-            DataHandler.getDataHandler().getTrips().getArrayTrip().remove(aSelected);
+            DataHandler.getInstance().getTrips().getArrayTrip().remove(aSelected);
         }
         findTrips();
     }
@@ -131,7 +131,7 @@ public class SearchController extends Controller implements Initializable {
         ObservableList<Reservation> selected;
         selected = matchingReservations.getSelectionModel().getSelectedItems();
         for (Reservation aSelected : selected) {
-            DataHandler.getDataHandler().getReservationList().remove(aSelected);
+            DataHandler.getInstance().getReservationList().remove(aSelected);
         }
         findReservations();
     }
@@ -142,7 +142,7 @@ public class SearchController extends Controller implements Initializable {
         Scene scene = new Scene(root, 1000, 600);
         Stage window = new Stage();
         ReservationController reservationController = fxmlLoader.getController();
-        reservationController.setEditData(DataHandler.getDataHandler().getReservationList().getArrayReservation().get(0));
+        reservationController.setEditData(DataHandler.getInstance().getReservationList().getArrayReservation().get(0));
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle("Edit trip");
         window.setScene(scene);

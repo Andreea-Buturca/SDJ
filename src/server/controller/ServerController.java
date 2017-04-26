@@ -1,5 +1,8 @@
 package server.controller;
 
+import server.DummyObserver;
+
+import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -18,11 +21,13 @@ public class ServerController implements Runnable {
         try {
             ServerSocket welcomeSocket = new ServerSocket(PORT);
             System.out.println("Server started");
+            DummyObserver observer = new DummyObserver();
             while (true) {
                 Socket connectionSocket = welcomeSocket.accept();
                 ServerCommunication c = new ServerCommunication(connectionSocket);
                 new Thread(c, "Communication " + count).start();
                 System.out.println("Client connected");
+                observer.addClient(new ObjectOutputStream(connectionSocket.getOutputStream()));
                 count++;
             }
         } catch (Exception e) {

@@ -77,7 +77,7 @@ public class TripController extends Controller implements Initializable {
             loadChauffeurList();
 
             ObservableList<Destination> destinationItems = FXCollections.observableArrayList();
-            destinationItems.addAll(DataHandler.getDataHandler().getDestinationList().getArrayDestination());
+            destinationItems.addAll(DataHandler.getInstance().getDestinationList().getArrayDestination());
             fieldDestination.setItems(destinationItems);
             fieldDeparture.setItems(destinationItems);
             stopName.setItems(destinationItems);
@@ -104,7 +104,7 @@ public class TripController extends Controller implements Initializable {
     private void loadChauffeurList() {
         ChauffeurList chauffeurs;
 
-        chauffeurs = DataHandler.getDataHandler().getChauffeurList().copy();
+        chauffeurs = DataHandler.getInstance().getChauffeurList().copy();
         chauffeurs.removeAllVicars();
 
         if (validateEmptyField(fieldDistance) && validateNumberField(fieldDistance)) {
@@ -112,7 +112,7 @@ public class TripController extends Controller implements Initializable {
         }
         chauffeurs = chauffeurs.getAllByPrefferedBus(busType.getValue().toString());
 
-        for (Chauffeur chauffeur : DataHandler.getDataHandler().getChauffeurList().getAllVicars().getArrayChauffeur()) {
+        for (Chauffeur chauffeur : DataHandler.getInstance().getChauffeurList().getAllVicars().getArrayChauffeur()) {
             chauffeurs.add(chauffeur);
         }
 
@@ -141,12 +141,12 @@ public class TripController extends Controller implements Initializable {
         BusList buses;
 
         if (busType.getValue().equals("Mini Bus"))
-            buses = new BusList(DataHandler.getDataHandler().getBusList().searchByType("server.model.MiniBus"));
+            buses = new BusList(DataHandler.getInstance().getBusList().searchByType("server.model.MiniBus"));
         else if (busType.getValue().equals("Party Bus"))
-            buses = new BusList(DataHandler.getDataHandler().getBusList().searchByType("server.model.PartyBus"));
+            buses = new BusList(DataHandler.getInstance().getBusList().searchByType("server.model.PartyBus"));
         else if (busType.getValue().equals("Luxury Bus"))
-            buses = new BusList(DataHandler.getDataHandler().getBusList().searchByType("server.model.LuxuryBus"));
-        else buses = new BusList(DataHandler.getDataHandler().getBusList().searchByType("server.model.ClassicBus"));
+            buses = new BusList(DataHandler.getInstance().getBusList().searchByType("server.model.LuxuryBus"));
+        else buses = new BusList(DataHandler.getInstance().getBusList().searchByType("server.model.ClassicBus"));
 
         if (startDatePicker.getValue() != null && endDatePicker.getValue() != null && validateTimeField(fieldStartTime) && validateTimeField(fieldEndTime)) {
             String[] lineToken = fieldStartTime.getText().split(":");
@@ -169,7 +169,7 @@ public class TripController extends Controller implements Initializable {
     }
 
     private void loadCustomerList() {
-        CustomerList customers = DataHandler.getDataHandler().getCustomerList();
+        CustomerList customers = DataHandler.getInstance().getCustomerList();
 
         if (validateEmptyField(fieldCustomerName))
             if (customers.findAllByName(fieldCustomerName.getText()) != null)
@@ -186,7 +186,7 @@ public class TripController extends Controller implements Initializable {
         if (customers.getSize() != 0) {
             customerItems.addAll(customers.getArrayCustomer());
         } else {
-            customerItems.addAll(DataHandler.getDataHandler().getCustomerList().getArrayCustomer());
+            customerItems.addAll(DataHandler.getInstance().getCustomerList().getArrayCustomer());
         }
 
         customerList.setItems(customerItems);
@@ -262,11 +262,11 @@ public class TripController extends Controller implements Initializable {
             boolean isCompany = validateEmptyField(fieldCustomerCompany);
 
             if (!isCompany) {
-                DataHandler.getDataHandler().getCustomerList().add(new Customer(fieldCustomerName.getText(), fieldCustomerAddress.getText(), fieldCustomerEmail.getText(), fieldCustomerPhone.getText()));
+                DataHandler.getInstance().getCustomerList().add(new Customer(fieldCustomerName.getText(), fieldCustomerAddress.getText(), fieldCustomerEmail.getText(), fieldCustomerPhone.getText()));
             } else if (isCompany) {
-                DataHandler.getDataHandler().getCustomerList().add(new Customer(fieldCustomerName.getText(), fieldCustomerAddress.getText(), fieldCustomerEmail.getText(), fieldCustomerPhone.getText(), isCompany, fieldCustomerCompany.getText()));
+                DataHandler.getInstance().getCustomerList().add(new Customer(fieldCustomerName.getText(), fieldCustomerAddress.getText(), fieldCustomerEmail.getText(), fieldCustomerPhone.getText(), isCompany, fieldCustomerCompany.getText()));
             }
-            DataHandler.getDataHandler().save();
+            DataHandler.getInstance().save();
             successdisplay("Success", "Customer was created.");
             loadCustomerList();
         } else {
@@ -351,18 +351,18 @@ public class TripController extends Controller implements Initializable {
             Destination pickUp;
             Destination destination;
 
-            if (DataHandler.getDataHandler().getDestinationList().findByName(fieldDeparture.getValue().toString()) != null) {
-                pickUp = DataHandler.getDataHandler().getDestinationList().findByName(fieldDeparture.getValue().toString());
+            if (DataHandler.getInstance().getDestinationList().findByName(fieldDeparture.getValue().toString()) != null) {
+                pickUp = DataHandler.getInstance().getDestinationList().findByName(fieldDeparture.getValue().toString());
             } else {
                 pickUp = new Destination(fieldDeparture.getValue().toString());
-                DataHandler.getDataHandler().getDestinationList().add(pickUp);
+                DataHandler.getInstance().getDestinationList().add(pickUp);
             }
 
-            if (DataHandler.getDataHandler().getDestinationList().findByName(fieldDestination.getValue().toString()) != null) {
-                destination = DataHandler.getDataHandler().getDestinationList().findByName(fieldDestination.getValue().toString());
+            if (DataHandler.getInstance().getDestinationList().findByName(fieldDestination.getValue().toString()) != null) {
+                destination = DataHandler.getInstance().getDestinationList().findByName(fieldDestination.getValue().toString());
             } else {
                 destination = new Destination(fieldDestination.getValue().toString());
-                DataHandler.getDataHandler().getDestinationList().add(destination);
+                DataHandler.getInstance().getDestinationList().add(destination);
             }
 
             int distance = Integer.parseInt(fieldDistance.getText());
@@ -388,11 +388,11 @@ public class TripController extends Controller implements Initializable {
             }
 
             if (oldTrip != null) {
-                DataHandler.getDataHandler().getTrips().remove(oldTrip);
+                DataHandler.getInstance().getTrips().remove(oldTrip);
             }
 
-            DataHandler.getDataHandler().getTrips().add(trip);
-            Main.oHandler.notify(DataHandler.getDataHandler().getTrips());
+            DataHandler.getInstance().getTrips().add(trip);
+            Main.oHandler.notify(DataHandler.getInstance().getTrips());
                 if (oldTrip != null) {
                 successdisplay("Edited", "Trip was edited.");
 
@@ -401,7 +401,7 @@ public class TripController extends Controller implements Initializable {
             } else {
                 successdisplay("Created", "Trip was created.");
             }
-            DataHandler.getDataHandler().save();
+            DataHandler.getInstance().save();
             Parent root = FXMLLoader.load(getClass().getResource("../view/mainScreen.fxml"));
             Scene scene = new Scene(root);
             Main.stage.setScene(scene);

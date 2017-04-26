@@ -1,4 +1,4 @@
-package server.controller;
+package server;
 
 import server.model.TripList;
 
@@ -19,6 +19,7 @@ public class ObservableHandler extends Observable {
     }
 
     public void notify(TripList trips){
+        super.setChanged();
         super.notifyObservers(trips);
     }
 }

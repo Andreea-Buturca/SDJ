@@ -23,14 +23,14 @@ public class DataHandler implements Serializable {
     private DataHandler() {
 
     }
-public static DataHandler getDataHandler()
-{
-    if(dataHandler==null)
-    {
-        dataHandler=new DataHandler();
+
+    public static DataHandler getInstance() {
+        if (dataHandler == null) {
+            dataHandler = new DataHandler();
+        }
+        return dataHandler;
     }
-    return dataHandler;
-}
+
     /**
      * @return main TripList
      */
@@ -92,7 +92,7 @@ public static DataHandler getDataHandler()
      * Creates file to save data in.
      */
 
-    public  void save() {
+    public void save() {
 
         String filename = "mainData.bin";
         saveFile(filename);
@@ -103,7 +103,7 @@ public static DataHandler getDataHandler()
      * Creates back-up file.
      */
 
-    public  void backUp() {
+    public void backUp() {
 
         String filename = "mainDataBackUp.bin";
         saveFile(filename);
