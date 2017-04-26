@@ -1,5 +1,7 @@
 package server.controller;
 
+import server.mediator.DataHandler;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -20,7 +22,11 @@ public class ServerCommunication implements Runnable {
     }
 
     public void run() {
-        System.out.println("Connected device");
+        try {
+            outToClient.writeObject(DataHandler.getTrips());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

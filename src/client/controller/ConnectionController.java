@@ -19,14 +19,14 @@ public class ConnectionController implements Runnable{
     private static final int PORT = 6666;
 
     public ConnectionController() throws IOException
-    {
+        {
         try
         {
             socket = new Socket(HOST, PORT);
             outToServer = new ObjectOutputStream(socket.getOutputStream());
             inFromServer = new ObjectInputStream(socket.getInputStream());
-            //ClientReceiver reciever = new ClientReceiver(inFromServer, model);
-            //new Thread(reciever, "Reciever").start();
+            ClientReceiver reciever = new ClientReceiver(inFromServer, outToServer);
+            new Thread(reciever, "Reciever").start();
         }
         catch (Exception e)
         {
@@ -37,7 +37,7 @@ public class ConnectionController implements Runnable{
 
     public void run()
     {
-        try
+        /*try
         {
             while (true)
             {
@@ -47,6 +47,6 @@ public class ConnectionController implements Runnable{
         catch (Exception e)
         {
             e.printStackTrace();
-        }
+        }*/
     }
 }
