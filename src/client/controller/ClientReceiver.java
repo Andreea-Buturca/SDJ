@@ -32,9 +32,9 @@ public class ClientReceiver implements Runnable{
                 Controller controller = (Controller) fxmlLoader.getController();
                 controller.showList(trips);
             } catch (IOException e) {
-                e.printStackTrace();
+               //
             } catch (ClassNotFoundException e) {
-                e.printStackTrace();
+                //
             }
         }
     }
