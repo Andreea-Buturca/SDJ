@@ -11,6 +11,7 @@ import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import server.mediator.DataHandler;
 import server.model.*;
 
 import java.io.FileNotFoundException;

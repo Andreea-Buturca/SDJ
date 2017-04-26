@@ -1,5 +1,7 @@
 package server.model;
 
+import server.mediator.DataHandler;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;

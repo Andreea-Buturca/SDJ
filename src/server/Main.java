@@ -9,7 +9,7 @@ import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import server.controller.ObservableHandler;
 import server.controller.ServerController;
-import server.model.DataHandler;
+import server.mediator.DataHandler;
 
 import java.util.Optional;
 

@@ -12,6 +12,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import server.Main;
+import server.mediator.DataHandler;
 import server.model.*;
 
 import java.io.IOException;

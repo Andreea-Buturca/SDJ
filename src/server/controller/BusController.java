@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import server.Main;
+import server.mediator.DataHandler;
 import server.model.*;
 
 import java.io.FileNotFoundException;

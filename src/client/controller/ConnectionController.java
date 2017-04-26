@@ -41,7 +41,6 @@ public class ConnectionController implements Runnable{
         {
             while (true)
             {
-
                 System.out.println("Reciever: ");
             }
         }

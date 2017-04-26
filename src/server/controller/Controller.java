@@ -10,7 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import server.Main;
-import server.model.DataHandler;
+import server.mediator.DataHandler;
 import server.model.Trip;
 import server.model.TripList;
 

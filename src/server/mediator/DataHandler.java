@@ -1,4 +1,6 @@
-package server.model;
+package server.mediator;
+
+import server.model.*;
 
 import java.io.*;
 

@@ -11,7 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import server.Main;
 import server.model.Chauffeur;
-import server.model.DataHandler;
+import server.mediator.DataHandler;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
