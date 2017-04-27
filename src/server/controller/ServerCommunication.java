@@ -1,6 +1,6 @@
 package server.controller;
 
-import server.DummyObserver;
+import server.mediator.DummyObserver;
 import server.mediator.DataHandler;
 
 import java.io.IOException;

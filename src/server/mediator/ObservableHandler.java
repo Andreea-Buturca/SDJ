@@ -1,4 +1,4 @@
-package server;
+package server.mediator;
 
 import server.model.TripList;
 

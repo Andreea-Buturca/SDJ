@@ -1,4 +1,6 @@
-package server;
+package server.mediator;
+
+import server.Main;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;

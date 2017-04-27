@@ -58,6 +58,7 @@ public class Controller implements Observer,Initializable {
     public void showList(TripList trips) {
         System.out.println("method called");
         if (tripList!=null) {
+            System.out.println(trips.getSize());
             System.out.println("wennt inside if");
             trips.sort();
             ObservableList<Trip> data = FXCollections.observableArrayList();
@@ -67,6 +68,7 @@ public class Controller implements Observer,Initializable {
                 if (trips.getArrayTrip().get(i).getDateStart().isAfter(LocalDate.now())) data.add(trips.get(i));*/
             }
             System.out.println(data);
+            System.out.println(data.size());
             tripList.setItems(data);
         }
     }

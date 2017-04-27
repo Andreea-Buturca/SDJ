@@ -393,7 +393,7 @@ public class TripController extends Controller implements Initializable {
 
             DataHandler.getInstance().getTrips().add(trip);
             Main.oHandler.notify(DataHandler.getInstance().getTrips());
-                if (oldTrip != null) {
+            if (oldTrip != null) {
                 successdisplay("Edited", "Trip was edited.");
 
                 Stage stage = (Stage) accommodationCheckBox.getScene().getWindow();
