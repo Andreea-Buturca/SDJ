@@ -1,5 +1,6 @@
 package server.controller;
 
+import server.DummyObserver;
 import server.mediator.DataHandler;
 
 import java.io.IOException;
@@ -14,11 +15,12 @@ public class ServerCommunication implements Runnable {
     private ObjectInputStream inFromClient;
     private ObjectOutputStream outToClient;
 
-    public ServerCommunication(Socket clientSocket)
+    public ServerCommunication(Socket clientSocket, DummyObserver observer)
             throws IOException
     {
         outToClient = new ObjectOutputStream(clientSocket.getOutputStream());
         inFromClient = new ObjectInputStream(clientSocket.getInputStream());
+        observer.addClient(outToClient);
     }
 
     public void run() {

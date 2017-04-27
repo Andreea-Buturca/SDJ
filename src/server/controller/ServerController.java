@@ -24,10 +24,9 @@ public class ServerController implements Runnable {
             DummyObserver observer = new DummyObserver();
             while (true) {
                 Socket connectionSocket = welcomeSocket.accept();
-                ServerCommunication c = new ServerCommunication(connectionSocket);
+                ServerCommunication c = new ServerCommunication(connectionSocket, observer);
                 new Thread(c, "Communication " + count).start();
                 System.out.println("Client connected");
-                observer.addClient(new ObjectOutputStream(connectionSocket.getOutputStream()));
                 count++;
             }
         } catch (Exception e) {
