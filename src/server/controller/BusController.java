@@ -1,6 +1,5 @@
 package server.controller;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -8,8 +7,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import server.Main;
-import server.mediator.DataHandler;
-import server.model.*;
+import server.domain.mediator.DataHandler;
+import server.domain.model.*;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -45,10 +44,7 @@ public class BusController extends Controller {
 
     private void loadList() {
         busListview.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-        ObservableList<Bus> items = FXCollections.observableArrayList();
-        for (Bus bus : DataHandler.getInstance().getBusList().getArrayBuses()) {
-            items.add(bus);
-        }
+        ObservableList<Bus> items = DataHandler.getInstance().getObservableListOfBuses();
         busListview.setItems(items);
     }
 
@@ -60,7 +56,7 @@ public class BusController extends Controller {
         ObservableList<Bus> selected;
         selected = busListview.getSelectionModel().getSelectedItems();
         for (Bus aSelected : selected) {
-            DataHandler.getInstance().getBusList().removeBus(aSelected);
+            DataHandler.getInstance().removeFromBuslist(aSelected);
         }
 
         loadList();
@@ -84,13 +80,13 @@ public class BusController extends Controller {
             int seats = Integer.parseInt(seatNumber.getText());
 
             if (typeChoice.getValue().equals("Classic Bus")) {
-                DataHandler.getInstance().getBusList().add(new ClassicBus(regplate, seats));
+                DataHandler.getInstance().addBus(regplate, seats, DataHandler.CLASSIC);
             } else if (typeChoice.getValue().equals("Mini Bus")) {
-                DataHandler.getInstance().getBusList().add(new MiniBus(regplate, seats));
+                DataHandler.getInstance().addBus(regplate, seats, DataHandler.MINI);
             } else if (typeChoice.getValue().equals("Luxury Bus")) {
-                DataHandler.getInstance().getBusList().add(new LuxuryBus(regplate, seats));
+                DataHandler.getInstance().addBus(regplate, seats, DataHandler.LUXURY);
             } else {
-                DataHandler.getInstance().getBusList().add(new PartyBus(regplate, seats));
+                DataHandler.getInstance().addBus(regplate, seats, DataHandler.PARTY);
             }
             DataHandler.getInstance().save();
             successdisplay("Success", "Bus was created.");

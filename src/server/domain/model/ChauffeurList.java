@@ -1,6 +1,6 @@
-package server.model;
+package server.domain.model;
 
-import server.mediator.DataHandler;
+import server.domain.mediator.DataHandler;
 
 import java.io.Serializable;
 import java.util.ArrayList;

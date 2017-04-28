@@ -11,12 +11,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import client.Main;
 import javafx.scene.control.ListView;
-import server.model.Trip;
-import server.model.TripList;
+import server.domain.model.Trip;
+import server.domain.model.TripList;
 
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.ResourceBundle;

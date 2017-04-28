@@ -1,4 +1,4 @@
-package server.model;
+package server.domain.model;
 
 import java.io.Serializable;
 

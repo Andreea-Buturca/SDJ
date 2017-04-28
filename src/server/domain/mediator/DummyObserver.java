@@ -1,4 +1,4 @@
-package server.mediator;
+package server.domain.mediator;
 
 import server.Main;
 

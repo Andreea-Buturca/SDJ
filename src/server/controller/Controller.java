@@ -1,6 +1,5 @@
 package server.controller;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -10,9 +9,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import server.Main;
-import server.mediator.DataHandler;
-import server.model.Trip;
-import server.model.TripList;
+import server.domain.mediator.DataHandler;
+import server.domain.model.Trip;
 
 import java.io.IOException;
 import java.net.URL;
@@ -63,13 +61,7 @@ public class Controller implements Initializable {
      */
 
     private void showList() {
-        TripList trips = DataHandler.getInstance().getTrips();
-        trips.sort();
-        ObservableList<Trip> data = FXCollections.observableArrayList();
-        for (int i = 0; i < trips.getSize(); i++) {
-            if (trips.getArrayTrip().get(i).getDateStart().isEqual(LocalDate.now())) data.add(trips.get(i));
-            if (trips.getArrayTrip().get(i).getDateStart().isAfter(LocalDate.now())) data.add(trips.get(i));
-        }
+        ObservableList<Trip> data = DataHandler.getInstance().getSortedObsrvableTriplist();
         tripList.setItems(data);
     }
 

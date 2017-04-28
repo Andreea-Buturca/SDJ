@@ -1,7 +1,4 @@
-package server.mediator;
-
-import server.mediator.DummyObserver;
-import server.mediator.DataHandler;
+package server.domain.mediator;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;

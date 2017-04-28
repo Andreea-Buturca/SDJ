@@ -8,8 +8,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import server.controller.ServerController;
-import server.mediator.DataHandler;
-import server.mediator.ObservableHandler;
+import server.domain.mediator.DataHandler;
+import server.domain.mediator.ObservableHandler;
 
 import java.util.Optional;
 

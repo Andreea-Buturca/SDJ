@@ -1,7 +1,6 @@
 package server.controller;
 
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -10,8 +9,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import server.Main;
-import server.model.Chauffeur;
-import server.mediator.DataHandler;
+import server.domain.model.Chauffeur;
+import server.domain.mediator.DataHandler;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -52,10 +51,7 @@ public class ChauffeurController extends Controller implements Initializable {
 
     private void loadList() {
         listViewChauffeurList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-        ObservableList<Chauffeur> items = FXCollections.observableArrayList();
-        for (Chauffeur chauffeur : DataHandler.getInstance().getChauffeurList().getArrayChauffeur()) {
-            items.add(chauffeur);
-        }
+        ObservableList<Chauffeur> items = DataHandler.getInstance().getObservableListOfChauffeurs();
         listViewChauffeurList.setItems(items);
     }
 
@@ -91,36 +87,16 @@ public class ChauffeurController extends Controller implements Initializable {
             String phone = fieldChauffeurAddPhone.getText();
             LocalDate birthday = birthdayPicker.getValue();
             int chauffeurID = Integer.parseInt(fieldChauffeurAddId.getText());
-            boolean isVikar = false;
+            boolean isVikar = checkBoxVikar.isSelected();
+            boolean shortdistance = checkBoxDistanceShort.isSelected();
+            boolean mediumdistance = checkBoxDistanceMedium.isSelected();
+            boolean longdistance = checkBoxDistanceLong.isSelected();
+            boolean classic = checkBoxClasicBus.isSelected();
+            boolean party = checkBoxPartyBus.isSelected();
+            boolean mini = checkBoxMiniBus.isSelected();
+            boolean luxury = checkboxLuxuryBus.isSelected();
 
-            if (!checkBoxVikar.isSelected()) {
-                DataHandler.getInstance().getChauffeurList().add(new Chauffeur(name, address, email, phone, birthday, chauffeurID, isVikar));
-                Chauffeur chauffeur = DataHandler.getInstance().getChauffeurList().getByName(name);
-                if (checkBoxDistanceShort.isSelected()) {
-                    chauffeur.setPreferredShortDistance(400);
-                }
-                if (checkBoxDistanceMedium.isSelected()) {
-                    chauffeur.setPreferredMediumDistance(1000);
-                }
-                if (checkBoxDistanceLong.isSelected()) {
-                    chauffeur.setPreferredLongDistance(2500);
-                }
-                if (checkBoxClasicBus.isSelected()) {
-                    chauffeur.setPreferredBusType("Classic Bus");
-                }
-                if (checkboxLuxuryBus.isSelected()) {
-                    chauffeur.setPreferredBusType("Luxury Bus");
-                }
-                if (checkBoxPartyBus.isSelected()) {
-                    chauffeur.setPreferredBusType("Party Bus");
-                }
-                if (checkBoxMiniBus.isSelected()) {
-                    chauffeur.setPreferredBusType("Mini Bus");
-                }
-            } else if (checkBoxVikar.isSelected()) {
-                isVikar = true;
-                DataHandler.getInstance().getChauffeurList().add(new Chauffeur(name, address, email, phone, birthday, chauffeurID, isVikar));
-            }
+            DataHandler.getInstance().addChauffeur(name, address, email, phone, birthday, chauffeurID, isVikar, shortdistance, mediumdistance, longdistance, classic, party, luxury, mini);
 
             DataHandler.getInstance().save();
             successdisplay("Success", "Chauffeur was added.");
@@ -143,7 +119,7 @@ public class ChauffeurController extends Controller implements Initializable {
         ObservableList<Chauffeur> selected;
         selected = listViewChauffeurList.getSelectionModel().getSelectedItems();
         for (Chauffeur aSelected : selected) {
-            DataHandler.getInstance().getChauffeurList().removeChauffeur(aSelected);
+            DataHandler.getInstance().removeFromChauffeurlist(aSelected);
         }
         loadList();
         DataHandler.getInstance().save();

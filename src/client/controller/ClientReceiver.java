@@ -3,12 +3,11 @@ package client.controller;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
-import server.model.TripList;
+import server.domain.model.TripList;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.Observable;
 
 /**
  * Created by Marek on 26-Apr-17.
