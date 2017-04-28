@@ -28,6 +28,7 @@ public class DataHandler implements Serializable {
         if (dataHandler == null) {
             dataHandler = new DataHandler();
         }
+        System.out.println(dataHandler.hashCode());
         return dataHandler;
     }
 

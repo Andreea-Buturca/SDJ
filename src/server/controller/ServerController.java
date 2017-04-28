@@ -1,6 +1,7 @@
 package server.controller;
 
 import server.mediator.DummyObserver;
+import server.mediator.ServerCommunication;
 
 import java.net.ServerSocket;
 import java.net.Socket;

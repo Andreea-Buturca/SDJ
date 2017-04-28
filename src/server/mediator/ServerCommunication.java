@@ -1,4 +1,4 @@
-package server.controller;
+package server.mediator;
 
 import server.mediator.DummyObserver;
 import server.mediator.DataHandler;
