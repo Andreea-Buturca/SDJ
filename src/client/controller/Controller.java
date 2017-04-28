@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import client.Main;
 import javafx.scene.control.ListView;
+import server.domain.model.ProxyTripList;
 import server.domain.model.Trip;
 import server.domain.model.TripList;
 
@@ -54,7 +55,7 @@ public class Controller implements Observer,Initializable {
         System.out.println("searching");
     }
 
-    public void showList(TripList trips) {
+    public void showList(ProxyTripList trips) {
         System.out.println("method called");
         if (tripList!=null) {
             System.out.println(trips.getSize());
@@ -74,6 +75,6 @@ public class Controller implements Observer,Initializable {
 
     @Override
     public void update(Observable o, Object arg) {
-        showList((TripList)arg);
+        showList((ProxyTripList) arg);
     }
 }

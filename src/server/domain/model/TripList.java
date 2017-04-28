@@ -12,7 +12,7 @@ import java.util.Comparator;
  * @author IT-1Y-A16 Group 1
  */
 
-public class TripList implements Serializable {
+public class TripList implements Serializable, TripListInterface {
 
     private ArrayList<Trip> trips;
 
@@ -29,7 +29,7 @@ public class TripList implements Serializable {
      *
      * @param tripArrayList<Trip> tripArrayList to addNewArrayList
      */
-
+@Override
     public void addNewArrayList(ArrayList<Trip> tripArrayList) {
         this.trips = tripArrayList;
     }
@@ -39,7 +39,7 @@ public class TripList implements Serializable {
      *
      * @param trip trip to add
      */
-
+    @Override
     public void add(Trip trip) {
         this.trips.add(trip);
     }
@@ -47,7 +47,7 @@ public class TripList implements Serializable {
     /**
      * @return size of trip list
      */
-
+    @Override
     public int getSize() {
         return trips.size();
     }
@@ -57,7 +57,7 @@ public class TripList implements Serializable {
      *
      * @param trip trip to remove
      */
-
+    @Override
     public void remove(Trip trip) {
         trips.remove(trip);
     }
@@ -68,7 +68,7 @@ public class TripList implements Serializable {
      * @param index index to look at
      * @return trip at given index
      */
-
+    @Override
     public Trip get(int index) {
         return trips.get(index);
     }
@@ -76,7 +76,7 @@ public class TripList implements Serializable {
     /**
      * @return arraylist of all trips in the list
      */
-
+    @Override
     public ArrayList<Trip> getArrayTrip() {
         return trips;
     }
@@ -84,6 +84,7 @@ public class TripList implements Serializable {
     /**
      * Sort trips by date
      */
+    @Override
     public void sort() {
         getArrayTrip().sort(Comparator.comparing(Trip::getDateObjStart));
         addNewArrayList(getArrayTrip());
@@ -94,7 +95,7 @@ public class TripList implements Serializable {
      *
      * @return TripList of all trips that are not private.
      */
-
+    @Override
     public TripList findAllStandard() {
         TripList result = new TripList();
         for (Trip trip : trips) {
@@ -110,7 +111,7 @@ public class TripList implements Serializable {
      *
      * @return TripList of all trips that are private.
      */
-
+    @Override
     public TripList findAllPrivate() {
         TripList result = new TripList();
         for (Trip trip : trips) {
@@ -127,7 +128,7 @@ public class TripList implements Serializable {
      * @param date date to find by
      * @return TripList of all trips that starts at given date
      */
-
+    @Override
     public TripList findAllByDate(LocalDate date) {
         TripList result = new TripList();
         for (Trip trip : trips) {
@@ -148,7 +149,7 @@ public class TripList implements Serializable {
      * @param departure place of departure
      * @return TripList of all trips that starts at given place
      */
-
+    @Override
     public TripList findAllByDeparture(String departure) {
         TripList result = new TripList();
         for (Trip trip : trips) {
@@ -165,7 +166,7 @@ public class TripList implements Serializable {
      * @param destination destination to find by
      * @return TripList of all with given destination
      */
-
+    @Override
     public TripList findAllByDestination(String destination) {
         TripList result = new TripList();
         for (Trip trip : trips) {
@@ -182,7 +183,7 @@ public class TripList implements Serializable {
      * @param nrOfPassangers number of passengers
      * @return TripList of all trips with more space as given number
      */
-
+    @Override
     public TripList findAllByPassengers(String nrOfPassangers) {
         int passengers = Integer.parseInt(nrOfPassangers);
         TripList result = new TripList();
@@ -197,7 +198,7 @@ public class TripList implements Serializable {
     /**
      * @return list of trips converted to String
      */
-
+    @Override
     public String toString() {
         String result = "";
         for (Trip trip : trips) result += trip.toString() + "\n";

@@ -1,5 +1,6 @@
 package server.domain.mediator;
 
+import server.domain.model.ProxyTripList;
 import server.domain.model.TripList;
 
 import java.util.Observable;
@@ -18,7 +19,7 @@ public class ObservableHandler extends Observable {
         super.addObserver(ob);
     }
 
-    public void notify(TripList trips){
+    public void notify(ProxyTripList trips){
         super.setChanged();
         super.notifyObservers(trips);
     }

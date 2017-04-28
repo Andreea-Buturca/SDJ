@@ -23,7 +23,7 @@ public class DataHandler implements Serializable {
     public static final char PARTY = 'p';
     public static final char MINI = 'm';
     private static DataHandler dataHandler;
-    private TripList trips;
+    private ProxyTripList trips;
     private BusList busList;
     private ChauffeurList chauffeurList;
     private CustomerList customerList;
@@ -44,10 +44,10 @@ public class DataHandler implements Serializable {
     }
 
     /**
-     * @return main TripList
+     * @return main ProxyTripList
      */
 
-    public TripList getTrips() {
+    public ProxyTripList getTrips() {
         return trips;
     }
 
@@ -145,7 +145,7 @@ public class DataHandler implements Serializable {
     }
 
     public ObservableList getSortedObsrvableTriplist() {
-        TripList t = new TripList();
+        ProxyTripList t = new ProxyTripList();
         for (int i = 0; i < trips.getSize(); i++) {
             t.add(trips.get(i));
         }
@@ -183,7 +183,7 @@ public class DataHandler implements Serializable {
     }
 
     public void testCreate() {
-        trips = new TripList();
+        trips = new ProxyTripList();
         busList = new BusList();
         chauffeurList = new ChauffeurList();
         customerList = new CustomerList();
@@ -224,13 +224,13 @@ public class DataHandler implements Serializable {
             File file = new File(filename);
             FileInputStream fis = new FileInputStream(file);
             in = new ObjectInputStream(fis);
-            trips = (TripList) in.readObject();
+            trips = (ProxyTripList) in.readObject();
             busList = (BusList) in.readObject();
             chauffeurList = (ChauffeurList) in.readObject();
             customerList = (CustomerList) in.readObject();
             reservationList = (ReservationList) in.readObject();
             destinationList = (DestinationList) in.readObject();
-        } catch (IOException | ClassNotFoundException e) {
+        } catch (ClassCastException | IOException | ClassNotFoundException e) {
             testCreate();
         } finally {
             try {

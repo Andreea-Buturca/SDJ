@@ -3,6 +3,7 @@ package client.controller;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
+import server.domain.model.ProxyTripList;
 import server.domain.model.TripList;
 
 import java.io.IOException;
@@ -25,7 +26,7 @@ public class ClientReceiver implements Runnable{
     public void run() {
         while (true) {
             try {
-                TripList trips = (TripList) inFromServer.readObject();
+                ProxyTripList trips = (ProxyTripList) inFromServer.readObject();
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 Pane p = fxmlLoader.load(getClass().getResource("../view/tripList.fxml").openStream());
                 Controller controller = (Controller) fxmlLoader.getController();
