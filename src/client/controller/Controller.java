@@ -28,7 +28,7 @@ public class Controller implements Observer,Initializable {
     public DatePicker dateFrom;
     public DatePicker dateTo;
     public Button search;
-    public ListView tripList;
+    public ListView tripListClient;
 
     public Controller() {
         //server.Main.oHandler.adObserver(this);
@@ -37,6 +37,7 @@ public class Controller implements Observer,Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("Controller initialized");
+
     }
 
     public void searchMain(ActionEvent actionEvent) throws IOException {
@@ -57,7 +58,7 @@ public class Controller implements Observer,Initializable {
 
     public void showList(ProxyTripList trips) {
         System.out.println("method called");
-        if (tripList!=null) {
+        if (tripListClient!=null) {
             System.out.println(trips.getSize());
             System.out.println("wennt inside if");
             trips.sort();
@@ -67,9 +68,11 @@ public class Controller implements Observer,Initializable {
                 /*if (trips.getArrayTrip().get(i).getDateStart().isEqual(LocalDate.now())) data.add(trips.get(i));
                 if (trips.getArrayTrip().get(i).getDateStart().isAfter(LocalDate.now())) data.add(trips.get(i));*/
             }
+
+
             System.out.println(data);
             System.out.println(data.size());
-            tripList.setItems(data);
+            tripListClient.setItems(data);
         }
     }
 
