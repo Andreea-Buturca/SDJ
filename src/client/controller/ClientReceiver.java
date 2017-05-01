@@ -1,8 +1,10 @@
 package client.controller;
 
 
+import client.Main;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import server.domain.model.ProxyTripList;
 import server.domain.model.TripList;
 
@@ -24,13 +26,18 @@ public class ClientReceiver implements Runnable{
 
     @Override
     public void run() {
+        while (Main.controller == null) {
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
         while (true) {
             try {
                 ProxyTripList trips = (ProxyTripList) inFromServer.readObject();
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                Pane p = fxmlLoader.load(getClass().getResource("../view/tripList.fxml").openStream());
-                Controller controller = (Controller) fxmlLoader.getController();
-                controller.showList(trips);
+                System.out.println(trips);
+                Main.controller.showList(trips);
             } catch (IOException e) {
                //
             } catch (ClassNotFoundException e) {
