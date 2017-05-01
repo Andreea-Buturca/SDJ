@@ -10,7 +10,7 @@ import java.time.LocalDate;
 /**
  * Created by aykon on 23-Apr-17.
  */
-public class ConnectionController implements Runnable{
+public class ConnectionController implements Runnable {
 
     private static final String HOST = "localhost";
     private static final int PORT = 6666;
@@ -18,18 +18,14 @@ public class ConnectionController implements Runnable{
     private ObjectOutputStream outToServer;
     private Socket socket;
 
-    public ConnectionController() throws IOException
-        {
-        try
-        {
+    public ConnectionController() throws IOException {
+        try {
             socket = new Socket(HOST, PORT);
             outToServer = new ObjectOutputStream(socket.getOutputStream());
             inFromServer = new ObjectInputStream(socket.getInputStream());
             ClientReceiver reciever = new ClientReceiver(inFromServer, outToServer);
             new Thread(reciever, "Reciever").start();
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -44,8 +40,7 @@ public class ConnectionController implements Runnable{
         }
     }
 
-    public void run()
-    {
+    public void run() {
         /*try
         {
             while (true)

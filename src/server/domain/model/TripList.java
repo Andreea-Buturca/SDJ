@@ -91,38 +91,6 @@ public class TripList implements Serializable, TripListInterface {
     }
 
     /**
-     * Finds all trips that are not private.
-     *
-     * @return TripList of all trips that are not private.
-     */
-    @Override
-    public TripList findAllStandard() {
-        TripList result = new TripList();
-        for (Trip trip : trips) {
-            if (!trip.isPrivate()) {
-                result.add(trip);
-            }
-        }
-        return result;
-    }
-
-    /**
-     * Finds all trips that are private.
-     *
-     * @return TripList of all trips that are private.
-     */
-    @Override
-    public TripList findAllPrivate() {
-        TripList result = new TripList();
-        for (Trip trip : trips) {
-            if (trip.isPrivate()) {
-                result.add(trip);
-            }
-        }
-        return result;
-    }
-
-    /**
      * Finds all trips that starts at given date.
      *
      * @param date date to find by
@@ -137,58 +105,6 @@ public class TripList implements Serializable, TripListInterface {
             if ((cal.get(Calendar.YEAR) == date.getYear())
                     && (cal.get(Calendar.MONTH) == date.getMonthValue())
                     && (cal.get(Calendar.DAY_OF_MONTH) == date.getDayOfMonth())) {
-                result.add(trip);
-            }
-        }
-        return result;
-    }
-
-    /**
-     * Finds all trips that starts that start from given place.
-     *
-     * @param departure place of departure
-     * @return TripList of all trips that starts at given place
-     */
-    @Override
-    public TripList findAllByDeparture(String departure) {
-        TripList result = new TripList();
-        for (Trip trip : trips) {
-            if (trip.getPickUpPoint().getPlace().equals(departure)) {
-                result.add(trip);
-            }
-        }
-        return result;
-    }
-
-    /**
-     * Finds all trips with given destination.
-     *
-     * @param destination destination to find by
-     * @return TripList of all with given destination
-     */
-    @Override
-    public TripList findAllByDestination(String destination) {
-        TripList result = new TripList();
-        for (Trip trip : trips) {
-            if (trip.getDestination().getPlace().equals(destination)) {
-                result.add(trip);
-            }
-        }
-        return result;
-    }
-
-    /**
-     * Finds all trips which have more free spaces than given number of passengers.
-     *
-     * @param nrOfPassangers number of passengers
-     * @return TripList of all trips with more space as given number
-     */
-    @Override
-    public TripList findAllByPassengers(String nrOfPassangers) {
-        int passengers = Integer.parseInt(nrOfPassangers);
-        TripList result = new TripList();
-        for (Trip trip : trips) {
-            if (trip.getFreeSpaces() > passengers) {
                 result.add(trip);
             }
         }

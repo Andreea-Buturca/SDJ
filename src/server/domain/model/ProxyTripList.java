@@ -51,32 +51,8 @@ public class ProxyTripList implements TripListInterface, Serializable {
     }
 
     @Override
-    public synchronized TripList findAllStandard() {
-        return this.tripList.findAllStandard();
-    }
-
-    @Override
-    public synchronized TripList findAllPrivate() {
-        return this.tripList.findAllPrivate();
-    }
-
-    @Override
     public synchronized TripList findAllByDate(LocalDate date) {
         return this.tripList.findAllByDate(date);
     }
 
-    @Override
-    public synchronized TripList findAllByDeparture(String departure) {
-        return this.tripList.findAllByDeparture(departure);
-    }
-
-    @Override
-    public synchronized TripList findAllByDestination(String destination) {
-        return this.tripList.findAllByDestination(destination);
-    }
-
-    @Override
-    public synchronized TripList findAllByPassengers(String nrOfPassangers) {
-        return this.tripList.findAllByPassengers(nrOfPassangers);
-    }
 }

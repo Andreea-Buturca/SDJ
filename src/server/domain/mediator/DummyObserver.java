@@ -27,12 +27,10 @@ public class DummyObserver implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        ProxyTripList test = (ProxyTripList) arg;
-        System.out.println(test.getSize());
         for (int i=0;i<clients.size();i++){
             try {
-                System.out.println("sending list");
                 clients.get(i).writeObject(arg);
+                clients.get(i).reset();
             } catch (IOException e) {
                 //
             }

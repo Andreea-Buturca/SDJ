@@ -15,7 +15,7 @@ import java.io.ObjectOutputStream;
 /**
  * Created by Marek on 26-Apr-17.
  */
-public class ClientReceiver implements Runnable{
+public class ClientReceiver implements Runnable {
     private ObjectInputStream inFromServer;
     private ObjectOutputStream outToServer;
 
@@ -35,8 +35,8 @@ public class ClientReceiver implements Runnable{
         while (true) {
             try {
                 ProxyTripList trips = (ProxyTripList) inFromServer.readObject();
-                System.out.println(trips.getSize());
                 Main.controller.showList(trips);
+                inFromServer.reset();
             } catch (IOException e) {
             } catch (ClassNotFoundException e) {
                 //

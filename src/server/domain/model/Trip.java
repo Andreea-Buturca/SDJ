@@ -339,7 +339,7 @@ public class Trip implements Serializable {
                 tour += "Trip to: ";
         }
         String stop = "";
-        if(!this.stops.isEmpty())
+        if (this.stops != null)
         {
             stop += ", Stop: " +this.stops.toString()+" ";
         }

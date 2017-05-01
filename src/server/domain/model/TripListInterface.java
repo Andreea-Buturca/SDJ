@@ -22,20 +22,7 @@ public interface TripListInterface {
 
     void sort();
 
-    TripList findAllStandard();
-
-    TripList findAllPrivate();
-
     TripList findAllByDate(LocalDate date);
-
-    TripList findAllByDeparture(String departure);
-
-
-    TripList findAllByDestination(String destination);
-
-
-    TripList findAllByPassengers(String nrOfPassangers);
-
 
     String toString();
 }

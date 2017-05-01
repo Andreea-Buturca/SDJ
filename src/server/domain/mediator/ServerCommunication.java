@@ -24,6 +24,7 @@ public class ServerCommunication implements Runnable {
     public void run() {
         try {
             outToClient.writeObject(DataHandler.getInstance().getTrips());
+            outToClient.reset();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -31,6 +32,8 @@ public class ServerCommunication implements Runnable {
             try {
                 LocalDate[] dates = (LocalDate[]) inFromClient.readObject();
                 DataHandler.getInstance().getInDates(dates, outToClient);
+                inFromClient.reset();
+                System.out.println(dates.length);
             } catch (IOException e) {
                 //
             } catch (ClassNotFoundException e) {
