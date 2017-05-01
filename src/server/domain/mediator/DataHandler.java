@@ -355,12 +355,9 @@ public class DataHandler implements Serializable {
         destinationList.add(destination);
     }
 
-    public void addTrip(Bus bus, Chauffeur chauffeur, Destination pickUp, Destination destination, int distance, LocalDate startDatePicker, String fieldStartTime, LocalDate endDatePicker, String fieldEndTime, int price, DestinationList stops, boolean food, boolean accommodation, boolean ticket) {
+    public void addTrip(Bus bus, Chauffeur chauffeur, Destination pickUp, Destination destination, int distance, LocalDate startDatePicker, String fieldStartTime, LocalDate endDatePicker, String fieldEndTime, int price, boolean food, boolean accommodation, boolean ticket) {
         Trip trip = new Trip(bus, chauffeur, pickUp, destination, distance, startDatePicker, fieldStartTime, endDatePicker, fieldEndTime, price);
 
-        if (stops != null) {
-            trip.setStops(stops);
-        }
         if (food) {
             trip.setFood(true);
         }

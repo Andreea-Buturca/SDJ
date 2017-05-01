@@ -58,14 +58,6 @@ public class TripController extends Controller implements Initializable {
     public ListView customerList;
     public Button saveCustomerBtn;
     public Label tourLabel;
-    private Customer customer = null;
-    private TripController mainController;
-
-    //list for stops
-    private DestinationList stops = new DestinationList();
-
-    private Trip oldTrip;
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -109,18 +101,12 @@ public class TripController extends Controller implements Initializable {
 
     }
 
-
     private void loadStops() {
 
     }
 
     public void handleStops(ActionEvent actionEvent) {
 
-    }
-
-
-    public void addMainController(TripController tripController) {
-        mainController = tripController;
     }
 
     public void createTour(ActionEvent actionEvent) throws IOException {
@@ -164,7 +150,7 @@ public class TripController extends Controller implements Initializable {
 
             int distance = Integer.parseInt(fieldDistance.getText());
 
-            DataHandler.getInstance().addTrip(bus, chauffeur, pickUp, destination, distance, startDatePicker.getValue(), fieldStartTime.getText(), endDatePicker.getValue(), fieldEndTime.getText(), Integer.parseInt(fieldPrice.getText()), stops, foodCheckBox.isSelected(), accommodationCheckBox.isSelected(), ticketCheckBox.isSelected());
+            DataHandler.getInstance().addTrip(bus, chauffeur, pickUp, destination, distance, startDatePicker.getValue(), fieldStartTime.getText(), endDatePicker.getValue(), fieldEndTime.getText(), Integer.parseInt(fieldPrice.getText()), foodCheckBox.isSelected(), accommodationCheckBox.isSelected(), ticketCheckBox.isSelected());
             successdisplay("Created", "Trip was created.");
             DataHandler.getInstance().save();
             Parent root = FXMLLoader.load(getClass().getResource("../view/mainScreen.fxml"));
