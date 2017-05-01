@@ -22,9 +22,7 @@ import java.util.Observer;
 import java.util.ResourceBundle;
 
 public class Controller implements Observer,Initializable {
-    public DatePicker dateFromMain;
-    public DatePicker dateToMain;
-    public Button searchMain;
+
     public DatePicker dateFrom;
     public DatePicker dateTo;
     public Button search;
@@ -51,9 +49,7 @@ public class Controller implements Observer,Initializable {
     }
 
     public void seachTrips(ActionEvent actionEvent) {
-
-
-        System.out.println("searching");
+        Main.connectionController.sendDatesToServer(dateFrom.getValue(), dateTo.getValue());
     }
 
     public void showList(ProxyTripList trips) {

@@ -5,18 +5,18 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.SocketException;
+import java.time.LocalDate;
 
 /**
  * Created by aykon on 23-Apr-17.
  */
 public class ConnectionController implements Runnable{
 
+    private static final String HOST = "localhost";
+    private static final int PORT = 6666;
     private ObjectInputStream inFromServer;
     private ObjectOutputStream outToServer;
     private Socket socket;
-
-    private static final String HOST = "localhost";
-    private static final int PORT = 6666;
 
     public ConnectionController() throws IOException
         {
@@ -33,6 +33,15 @@ public class ConnectionController implements Runnable{
             e.printStackTrace();
         }
 
+    }
+
+    public void sendDatesToServer(LocalDate from, LocalDate to) {
+        LocalDate[] dates = {from, to};
+        try {
+            outToServer.writeObject(dates);
+        } catch (IOException e) {
+            //
+        }
     }
 
     public void run()

@@ -374,5 +374,27 @@ public class DataHandler implements Serializable {
         Main.oHandler.notify(trips);
     }
 
+    public void getInDates(LocalDate[] dates, ObjectOutputStream client) {
+        System.out.println(dates[0]);
+        ProxyTripList result = new ProxyTripList();
+        ProxyTripList trips = DataHandler.getInstance().getTrips();
+        for (int i = 0; i < trips.getSize(); i++) {
+            if ((
+                    trips.getArrayTrip().get(i).getDateStart().isEqual(dates[0]) ||
+                            trips.getArrayTrip().get(i).getDateStart().isAfter(dates[0])
+            ) && (
+                    trips.getArrayTrip().get(i).getDateStart().isEqual(dates[1]) ||
+                            trips.getArrayTrip().get(i).getDateStart().isBefore(dates[1])
+            )) {
+                result.add(trips.get(i));
+            }
+        }
+        try {
+            client.writeObject(result);
+        } catch (IOException e) {
+            //
+        }
+    }
+
 }
 
