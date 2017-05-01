@@ -21,7 +21,6 @@ public class ClientReceiver implements Runnable{
 
     public ClientReceiver(ObjectInputStream inFromServer,ObjectOutputStream outToServer ) {
         this.inFromServer=inFromServer;
-
     }
 
     @Override
@@ -36,10 +35,9 @@ public class ClientReceiver implements Runnable{
         while (true) {
             try {
                 ProxyTripList trips = (ProxyTripList) inFromServer.readObject();
-                System.out.println(trips);
+                System.out.println(trips.getSize());
                 Main.controller.showList(trips);
             } catch (IOException e) {
-               //
             } catch (ClassNotFoundException e) {
                 //
             }

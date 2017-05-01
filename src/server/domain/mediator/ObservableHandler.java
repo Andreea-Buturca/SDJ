@@ -15,7 +15,7 @@ public class ObservableHandler extends Observable {
 
     }
 
-    public void adObserver(Observer ob){
+    public void addObserver(Observer ob){
         super.addObserver(ob);
     }
 

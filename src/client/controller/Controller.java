@@ -17,6 +17,7 @@ import server.domain.model.TripList;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.ResourceBundle;
@@ -60,11 +61,9 @@ public class Controller implements Observer,Initializable {
             trips.sort();
             ObservableList<Trip> data = FXCollections.observableArrayList();
             for (int i = 0; i < trips.getSize(); i++) {
-                data.add(trips.get(i));
-                /*if (trips.getArrayTrip().get(i).getDateStart().isEqual(LocalDate.now())) data.add(trips.get(i));
-                if (trips.getArrayTrip().get(i).getDateStart().isAfter(LocalDate.now())) data.add(trips.get(i));*/
+                if (trips.getArrayTrip().get(i).getDateStart().isEqual(LocalDate.now())) data.add(trips.get(i));
+                if (trips.getArrayTrip().get(i).getDateStart().isAfter(LocalDate.now())) data.add(trips.get(i));
             }
-
 
             System.out.println(data);
             System.out.println(data.size());

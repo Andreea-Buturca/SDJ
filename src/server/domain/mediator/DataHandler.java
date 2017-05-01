@@ -370,7 +370,8 @@ public class DataHandler implements Serializable {
         if (ticket) {
             trip.setTickets(true);
         }
-        DataHandler.getInstance().getTrips().add(trip);
+        trips.add(trip);
+
         Main.oHandler.notify(trips);
     }
 

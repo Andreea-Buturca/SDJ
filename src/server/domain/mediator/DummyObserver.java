@@ -1,6 +1,7 @@
 package server.domain.mediator;
 
 import server.Main;
+import server.domain.model.ProxyTripList;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -16,7 +17,7 @@ public class DummyObserver implements Observer {
     private ArrayList<ObjectOutputStream> clients;
 
     public DummyObserver() {
-        Main.oHandler.adObserver(this);
+        Main.oHandler.addObserver(this);
         this.clients = new ArrayList<>();
     }
 
@@ -26,6 +27,8 @@ public class DummyObserver implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
+        ProxyTripList test = (ProxyTripList) arg;
+        System.out.println(test.getSize());
         for (int i=0;i<clients.size();i++){
             try {
                 System.out.println("sending list");
