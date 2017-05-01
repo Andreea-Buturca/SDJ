@@ -67,7 +67,9 @@ public class Controller implements Observer,Initializable {
 
             System.out.println(data);
             System.out.println(data.size());
+            //tripListClient.getItems().clear();
             tripListClient.setItems(data);
+
         }
     }
 
