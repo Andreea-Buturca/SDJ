@@ -1,6 +1,5 @@
 package client.controller;
 
-
 import client.Main;
 import server.domain.model.ProxyTripList;
 
