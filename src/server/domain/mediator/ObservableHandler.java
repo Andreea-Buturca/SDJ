@@ -1,7 +1,6 @@
 package server.domain.mediator;
 
 import server.domain.model.ProxyTripList;
-import server.domain.model.TripList;
 
 import java.util.Observable;
 import java.util.Observer;

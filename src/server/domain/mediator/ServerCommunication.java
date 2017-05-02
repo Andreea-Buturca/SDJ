@@ -33,7 +33,6 @@ public class ServerCommunication implements Runnable {
                 LocalDate[] dates = (LocalDate[]) inFromClient.readObject();
                 DataHandler.getInstance().getInDates(dates, outToClient);
                 inFromClient.reset();
-                System.out.println(dates.length);
             } catch (IOException e) {
                 //
             } catch (ClassNotFoundException e) {

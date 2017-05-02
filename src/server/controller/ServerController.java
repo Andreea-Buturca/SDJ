@@ -26,7 +26,6 @@ public class ServerController implements Runnable {
                 Socket connectionSocket = welcomeSocket.accept();
                 ServerCommunication c = new ServerCommunication(connectionSocket, observer);
                 new Thread(c, "Communication " + count).start();
-                System.out.println("Client connected");
                 count++;
             }
         } catch (Exception e) {

@@ -2,7 +2,6 @@ package server.domain.model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Comparator;
 
 /**
  * Created by andreea on 4/28/2017.

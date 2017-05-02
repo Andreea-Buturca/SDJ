@@ -39,7 +39,6 @@ public class DataHandler implements Serializable {
         if (dataHandler == null) {
             dataHandler = new DataHandler();
         }
-        System.out.println(dataHandler.hashCode());
         return dataHandler;
     }
 
@@ -262,7 +261,7 @@ public class DataHandler implements Serializable {
             out.writeObject(reservationList);
             out.writeObject(destinationList);
         } catch (IOException e) {
-            System.out.println("Exception: " + filename);
+            e.printStackTrace();
         } finally {
             try {
                 assert out != null;
@@ -373,7 +372,6 @@ public class DataHandler implements Serializable {
     }
 
     public void getInDates(LocalDate[] dates, ObjectOutputStream client) {
-        System.out.println(dates[0]);
         ProxyTripList result = new ProxyTripList();
         ProxyTripList trips = DataHandler.getInstance().getTrips();
         for (int i = 0; i < trips.getSize(); i++) {

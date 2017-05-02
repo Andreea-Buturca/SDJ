@@ -3,7 +3,6 @@ package client;
 import client.controller.ConnectionController;
 import client.controller.Controller;
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -29,7 +28,6 @@ public class Main extends Application {
         try
         {
             connectionController = new ConnectionController();
-            new Thread(connectionController, "Reciever").start();
         }
         catch (IOException e)
         {

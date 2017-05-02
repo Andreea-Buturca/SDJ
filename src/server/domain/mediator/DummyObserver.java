@@ -1,7 +1,6 @@
 package server.domain.mediator;
 
 import server.Main;
-import server.domain.model.ProxyTripList;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;

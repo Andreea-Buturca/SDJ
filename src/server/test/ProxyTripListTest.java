@@ -61,10 +61,6 @@ public class ProxyTripListTest {
         tripArrayList.add(trip5);
     }
 
-    @org.junit.After
-    public void tearDown() throws Exception {
-    }
-
     @org.junit.Test
     public void addNewArrayList() throws Exception {
         assertEquals("Size of trips", 2, proxyTripList.getSize());

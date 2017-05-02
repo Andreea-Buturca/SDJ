@@ -140,10 +140,7 @@ class Person implements Serializable {
         if (dateOfBirth != null) {
             LocalDate bday = getDateOfBirth();
             LocalDate today = LocalDate.now();
-            if (Period.between(bday, today).getYears() > 18)
-                return true;
-            else
-                return false;
+            return Period.between(bday, today).getYears() > 18;
         }
         return true;
     }

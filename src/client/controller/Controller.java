@@ -13,7 +13,6 @@ import client.Main;
 import javafx.scene.control.ListView;
 import server.domain.model.ProxyTripList;
 import server.domain.model.Trip;
-import server.domain.model.TripList;
 
 import java.io.IOException;
 import java.net.URL;
@@ -30,13 +29,10 @@ public class Controller implements Observer,Initializable {
     public ListView tripListClient;
 
     public Controller() {
-        //server.Main.oHandler.adObserver(this);
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println("Controller initialized");
-
     }
 
     public void searchMain(ActionEvent actionEvent) throws IOException {
@@ -54,22 +50,14 @@ public class Controller implements Observer,Initializable {
     }
 
     public void showList(ProxyTripList trips) {
-        System.out.println("method called");
         if (tripListClient!=null) {
-            System.out.println(trips.getSize());
-            System.out.println("wennt inside if");
             trips.sort();
             ObservableList<Trip> data = FXCollections.observableArrayList();
             for (int i = 0; i < trips.getSize(); i++) {
                 if (trips.getArrayTrip().get(i).getDateStart().isEqual(LocalDate.now())) data.add(trips.get(i));
                 if (trips.getArrayTrip().get(i).getDateStart().isAfter(LocalDate.now())) data.add(trips.get(i));
             }
-
-            System.out.println(data);
-            System.out.println(data.size());
-            //tripListClient.getItems().clear();
             tripListClient.setItems(data);
-
         }
     }
 
