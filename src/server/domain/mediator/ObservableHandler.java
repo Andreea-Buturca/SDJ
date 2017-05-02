@@ -10,10 +10,6 @@ import java.util.Observer;
  */
 public class ObservableHandler extends Observable {
 
-    public ObservableHandler() {
-
-    }
-
     public void addObserver(Observer ob){
         super.addObserver(ob);
     }

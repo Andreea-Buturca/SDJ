@@ -10,11 +10,8 @@ import java.net.Socket;
  * Created by aykon on 23-Apr-17.
  */
 public class ServerController implements Runnable {
+
     private static final int PORT = 6666;
-
-    public ServerController() {
-
-    }
 
     public void run() {
         int count = 1;
